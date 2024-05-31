@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Language Translator</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ece9e6, #ffffff);
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        video, canvas {
+            border: 5px solid #444;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform: scaleX(-1); /* 미러링 */
+        }
+        #result {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-size: 18px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .wrapper {
+            position: relative;
+            width: 640px;
+            height: 480px;
+            margin: 0 auto;
+        }
+        .button-container {
+            margin-top: 500px;
+        }
+        .category-button {
+            display: none; /* 숨김 처리 */
+        }
+    </style>
+</head>
+<body>
+    <h1>Sign Language Translator</h1>
+    <div class="wrapper">
+        <video id="video" width="640" height="480" autoplay></video>
+        <canvas id="outputCanvas" width="640" height="480"></canvas>
+        <div id="result"></div>
+    </div>
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+    {% load static %}
+    <script src="{% static 'js/translator.js' %}"></script>
+</body>
+</html>
